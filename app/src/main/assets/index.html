@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aura Wallpapers</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #10111b;
+      color: white;
+    }
+    header { padding: 24px 18px 12px; }
+    h1 { margin: 0; font-size: 28px; }
+    header p { color: #b7b8ca; }
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+      padding: 12px;
+    }
+    .wallpaper {
+      overflow: hidden;
+      border-radius: 16px;
+      background: #222438;
+    }
+    .wallpaper img {
+      display: block;
+      width: 100%;
+      height: 240px;
+      object-fit: cover;
+    }
+    .wallpaper button {
+      width: 100%;
+      border: 0;
+      padding: 12px 6px;
+      background: #7657f6;
+      color: white;
+      font-size: 14px;
+      font-weight: bold;
+    }
+    #message { padding: 0 16px 20px; color: #c6c6d5; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>✨ Aura Wallpapers</h1>
+    <p>Find a new look for your phone.</p>
+  </header>
+
+  <main class="gallery" id="gallery"></main>
+  <p id="message">Tap a wallpaper to open it.</p>
+
+  <script>
+    const wallpapers = [
+      ["Mountains", "photo-1464822759023-fed622ff2c3b"],
+      ["Ocean", "photo-1518837695005-2083093ee35b"],
+      ["Night Sky", "photo-1475274047050-1d0c0975c63e"],
+      ["Forest", "photo-1448375240586-882707db888b"],
+      ["Flowers", "photo-1490750967868-88aa4486c946"],
+      ["Desert", "photo-1509316785289-025f5b846b35"],
+      ["Space", "photo-1446776811953-b23d57bd21aa"],
+      ["Lake", "photo-1470770841072-f978cf4d019e"]
+    ];
+
+    const gallery = document.getElementById("gallery");
+
+    wallpapers.forEach(([name, id]) => {
+      const card = document.createElement("article");
+      card.className = "wallpaper";
+
+      const img = document.createElement("img");
+      img.src = `https://images.unsplash.com/${id}?auto=format&fit=crop&w=600&h=900&q=80`;
+      img.alt = name;
+      img.loading = "lazy";
+
+      const button = document.createElement("button");
+      button.textContent = "View " + name;
+      button.onclick = () => window.open(img.src, "_blank");
+
+      card.append(img, button);
+      gallery.appendChild(card);
+    });
+  </script>
+</body>
+</html>
